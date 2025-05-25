@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import type { CardProps } from '../types'
+import { colors, borderRadius, spacing, fontSize, fontWeight, shadows } from '../lib/design-tokens'
 
 const Card: React.FC<CardProps> = ({
   children,
@@ -25,26 +26,23 @@ const Card: React.FC<CardProps> = ({
 
 const styles = StyleSheet.create({
   base: {
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 3,
-    marginVertical: 8,
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.lg,
+    padding: spacing[4],
+    ...shadows.md,
+    marginVertical: spacing[2],
   },
   title: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#111827',
-    marginBottom: 4,
+    fontSize: fontSize.lg,
+    fontWeight: fontWeight.semibold,
+    color: colors.gray[900],
+    marginBottom: spacing[1],
   },
   description: {
-    fontSize: 14,
-    color: '#6b7280',
-    marginBottom: 12,
+    fontSize: fontSize.sm,
+    color: colors.gray[500],
+    marginBottom: spacing[3],
+    lineHeight: 20,
   },
 })
 

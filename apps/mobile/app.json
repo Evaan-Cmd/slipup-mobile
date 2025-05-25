@@ -23,12 +23,21 @@
       "versionCode": 1,
       "permissions": [
         "INTERNET",
-        "ACCESS_NETWORK_STATE"
+        "ACCESS_NETWORK_STATE",
+        "CAMERA",
+        "RECORD_AUDIO"
       ]
     },
     "scheme": "slipup",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-camera",
+      [
+        "react-native-reanimated",
+        {
+          "relativeSourceLocation": "../node_modules/react-native-reanimated/android"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

@@ -1,6 +1,7 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 import type { ButtonProps } from '../types'
+import { colors, borderRadius, spacing, fontSize, fontWeight, shadows } from '../lib/design-tokens'
 
 const Button: React.FC<ButtonProps> = ({
   children,
@@ -8,12 +9,14 @@ const Button: React.FC<ButtonProps> = ({
   variant = 'default',
   size = 'default',
   style,
+  disabled,
   ...props
 }) => {
   const buttonStyles = [
     styles.base,
     styles[variant],
     styles[`size_${size}`],
+    disabled && styles.disabled,
     style,
   ]
 
@@ -21,10 +24,16 @@ const Button: React.FC<ButtonProps> = ({
     styles.text,
     styles[`text_${variant}`],
     styles[`text_${size}`],
+    disabled && styles.textDisabled,
   ]
 
   return (
-    <TouchableOpacity style={buttonStyles} {...props}>
+    <TouchableOpacity 
+      style={buttonStyles} 
+      disabled={disabled}
+      activeOpacity={0.8}
+      {...props}
+    >
       <Text style={textStyles}>
         {children || title}
       </Text>
@@ -36,79 +45,86 @@ const styles = StyleSheet.create({
   base: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    borderRadius: borderRadius.lg,
+    paddingHorizontal: spacing[4],
+    paddingVertical: spacing[3],
+    ...shadows.sm,
   },
   default: {
-    backgroundColor: '#0066cc',
+    backgroundColor: colors.primary[500],
   },
   destructive: {
-    backgroundColor: '#dc2626',
+    backgroundColor: colors.error,
   },
   outline: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
     borderWidth: 1,
-    borderColor: '#d1d5db',
+    borderColor: colors.gray[300],
   },
   secondary: {
-    backgroundColor: '#f3f4f6',
+    backgroundColor: colors.gray[100],
   },
   ghost: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
   },
   link: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
   },
-  size_default: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+  disabled: {
+    opacity: 0.5,
   },
-  size_sm: {
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+  'size_default': {
+    paddingHorizontal: spacing[4],
+    paddingVertical: spacing[3],
   },
-  size_lg: {
-    paddingHorizontal: 20,
-    paddingVertical: 16,
+  'size_sm': {
+    paddingHorizontal: spacing[3],
+    paddingVertical: spacing[2],
   },
-  size_icon: {
+  'size_lg': {
+    paddingHorizontal: spacing[6],
+    paddingVertical: spacing[4],
+  },
+  'size_icon': {
     width: 44,
     height: 44,
     paddingHorizontal: 0,
     paddingVertical: 0,
   },
   text: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: fontSize.base,
+    fontWeight: fontWeight.semibold,
+    textAlign: 'center',
   },
-  text_default: {
-    color: '#ffffff',
+  'text_default': {
+    color: colors.white,
   },
-  text_destructive: {
-    color: '#ffffff',
+  'text_destructive': {
+    color: colors.white,
   },
-  text_outline: {
-    color: '#374151',
+  'text_outline': {
+    color: colors.gray[700],
   },
-  text_secondary: {
-    color: '#374151',
+  'text_secondary': {
+    color: colors.gray[700],
   },
-  text_ghost: {
-    color: '#374151',
+  'text_ghost': {
+    color: colors.gray[700],
   },
-  text_link: {
-    color: '#0066cc',
-    textDecorationLine: 'underline',
+  'text_link': {
+    color: colors.primary[500],
   },
-  text_sm: {
-    fontSize: 14,
+  'text_sm': {
+    fontSize: fontSize.sm,
   },
-  text_lg: {
-    fontSize: 18,
+  'text_lg': {
+    fontSize: fontSize.lg,
   },
-  text_icon: {
-    fontSize: 16,
+  'text_icon': {
+    fontSize: fontSize.base,
+  },
+  textDisabled: {
+    opacity: 0.7,
   },
 })
 

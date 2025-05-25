@@ -13,6 +13,15 @@ export interface ButtonProps extends TouchableOpacityProps, BaseComponentProps {
   variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
   size?: 'default' | 'sm' | 'lg' | 'icon'
   title?: string
+  disabled?: boolean
+}
+
+// IconButton props
+export interface IconButtonProps extends TouchableOpacityProps, BaseComponentProps {
+  icon: React.ComponentType<{ size?: number; color?: string }>
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
+  size?: 'default' | 'sm' | 'lg'
+  disabled?: boolean
 }
 
 // Text props
@@ -32,6 +41,7 @@ export interface InputProps extends BaseComponentProps {
   onChangeText?: (text: string) => void
   secureTextEntry?: boolean
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad'
+  disabled?: boolean
 }
 
 // Card props
