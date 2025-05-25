@@ -1,34 +1,37 @@
 {
   "name": "@slipup/mobile",
   "version": "1.0.0",
-  "description": "SlipUp Mobile Android App",
+  "description": "SlipUp Mobile Android App - Expo SDK 53",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
+    "dev": "expo start --android",
     "build": "eas build --platform android",
     "build:preview": "eas build --platform android --profile preview",
     "test": "jest",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx"
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@expo/vector-icons": "^13.0.0",
-    "@growthbook/growthbook-react": "^0.19.0",
+    "@expo/vector-icons": "^14.0.0",
+    "@growthbook/growthbook-react": "^0.21.0",
     "@slipup/api": "workspace:*",
-    "expo": "~49.0.0",
-    "expo-router": "^2.0.0",
-    "expo-status-bar": "~1.6.0",
-    "react": "18.2.0",
-    "react-native": "0.72.6",
-    "react-native-safe-area-context": "4.6.3",
-    "react-native-screens": "~3.22.0"
+    "@slipup/ui-kit": "workspace:*",
+    "expo": "~53.0.0",
+    "expo-router": "~4.0.0",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.0",
+    "react-native-safe-area-context": "4.12.0",
+    "react-native-screens": "~4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "@types/react": "~18.2.14",
-    "@types/react-native": "~0.72.2",
-    "eslint-config-expo": "^7.0.0",
-    "jest-expo": "~49.0.0",
-    "typescript": "^5.1.3"
+    "@babel/core": "^7.25.0",
+    "@types/react": "~18.3.0",
+    "@types/react-native": "~0.76.0",
+    "eslint-config-expo": "^7.1.0",
+    "jest-expo": "~53.0.0",
+    "typescript": "^5.6.0"
   }
 } 

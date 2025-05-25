@@ -15,9 +15,6 @@
       "**/*"
     ],
     "android": {
-      "compileSdkVersion": 34,
-      "targetSdkVersion": 34,
-      "buildToolsVersion": "34.0.0",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -25,8 +22,8 @@
       "package": "com.slipup.mobile",
       "versionCode": 1,
       "permissions": [
-        "android.permission.INTERNET",
-        "android.permission.ACCESS_NETWORK_STATE"
+        "INTERNET",
+        "ACCESS_NETWORK_STATE"
       ]
     },
     "scheme": "slipup",
@@ -41,7 +38,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "your-project-id"
+        "projectId": "slipup-mobile-android"
       }
     }
   }
