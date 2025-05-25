@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "declaration": true,
+    "composite": true,
+    "incremental": true,
+    "types": ["node", "jest"]
+  },
+  "include": [],
+  "references": [
+    {
+      "path": "./apps/mobile"
+    },
+    {
+      "path": "./packages/api"
+    },
+    {
+      "path": "./packages/ui-kit"
+    }
+  ]
+} 

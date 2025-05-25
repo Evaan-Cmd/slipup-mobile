@@ -1,0 +1,61 @@
+name: Nightly Mobile Android Build
+
+on:
+  schedule:
+    # Run daily at 02:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  nightly-mobile-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+          
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Lint mobile code
+        run: pnpm lint
+        
+      - name: Run mobile tests
+        run: pnpm test
+        
+      - name: Setup Expo CLI
+        run: pnpm add -g @expo/cli
+        
+      - name: Build Android (EAS Build)
+        working-directory: apps/mobile
+        run: |
+          # Install EAS CLI
+          pnpm add -g eas-cli
+          # Build Android APK for testing
+          eas build --platform android --profile preview --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          
+      - name: Notify on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Nightly Mobile Build Failed',
+              body: 'The nightly mobile Android build failed. Please check the workflow logs.',
+              labels: ['bug', 'mobile', 'ci/cd']
+            }); 
